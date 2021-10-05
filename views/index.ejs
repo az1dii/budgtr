@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("./partials/head.ejs") %>
+    <body>
+        <h1>Budgtr</h1>
+                <h4>Balance:
+                    <% let bankBalance = 0 %>
+                    <% for(eachBalance of allBudgets){
+                    bankBalance += parseInt(eachBalance.amount)
+                    } %>
+                    <% if(bankBalance>1000){ %>
+                    id="green"
+                    <% } else if (bankBalance<=0){ %>
+                    id="red"
+                    <% } %>
+                    >$<%= bankBalance %>
+                </h4>
+            </div>
+
+            <table>
+                <tr>
+                    <th>DATE</th>
+                    <th>NAME</th>
+                    <th>AMOUNT</th>
+                </tr>
+                <% for(let i = 0; i < allBudgets.length; i++){ %>
+                    <tr>
+                        <td><%= allBudgets[i].date %></td>
+                        <td><a href ="/budgets/<%= i %>"><%= allBudgets[i].name %></a></td>
+                        <td><%= allBudgets[i].amount %></td>
+                    </tr>
+                <% } %>
+            </table>
+
+            <form action="/budgets/new">
+                <input type="submit" value="NEW ITEM"/>
+            </form>
+        </div>
+    </body>
+</html>
